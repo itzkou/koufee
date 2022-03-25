@@ -5,18 +5,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.koufee.ui.theme.Brownie
+import com.example.koufee.ui.theme.Grege
 import com.example.koufee.ui.theme.KoufeeTheme
 
 class MainActivity : ComponentActivity() {
@@ -38,26 +38,50 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ItemCoffe(name: String) {
-    val image: Painter = painterResource(R.drawable.ic_coffee)
+    val imCoffe: Painter = painterResource(R.drawable.ic_coffee)
+    val imStar = painterResource(id = R.drawable.ic_star)
 
     Column(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier.padding(16.dp)
 
-        ) {
+    ) {
         Image(
-            painter = image, contentDescription = "ic_coffee",
+            painter = imCoffe, contentDescription = "ic_coffee",
             modifier = Modifier
-                .height(344.dp)
-                .fillMaxWidth()
+                .height(412.dp)
+                .width(344.dp)
         )
+
         Text(text = "Cappuccino")
-        Text(text = "Drizzled with Caramel")
+        Row(verticalAlignment = Alignment.CenterVertically) {
+
+            Text(text = "Drizzled with Caramel")
+            Image(painter = imStar, contentDescription = "im_star" )
+            Text(text = "4.5")
+
+        }
         Text(text = "A single espresso shot poured into hot foamy milk, with the surface topped with mildly sweetened cocoa powder and drizzled with scrumptious caramel syrup ...")
+
+        Text(text = "Choice of Milk")
+
+        ButtonColor()
 
 
     }
 
 
+}
+
+@Composable
+fun ButtonColor() {
+
+    val selected = remember { mutableStateOf(false) }
+
+    Button(colors = ButtonDefaults.buttonColors(
+        backgroundColor = if (selected.value) Grege else Brownie),
+        onClick = { selected.value = !selected.value }) {
+
+    }
 }
 
 @Preview(showBackground = true)
