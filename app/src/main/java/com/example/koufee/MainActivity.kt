@@ -7,6 +7,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -15,6 +16,9 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.koufee.ui.theme.Brownie
 import com.example.koufee.ui.theme.Grege
 import com.example.koufee.ui.theme.KoufeeTheme
@@ -65,7 +69,12 @@ fun ItemCoffe(name: String) {
 @Composable
 fun TextArea() {
     val imStar = painterResource(id = R.drawable.ic_star)
-    Text(text = "Cappuccino")
+
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text(text = "Cappuccino")
+        Heart()
+    }
+
     Row(verticalAlignment = Alignment.CenterVertically) {
 
         Text(text = "Drizzled with Caramel")
@@ -89,6 +98,12 @@ fun ButtonColor() {
         onClick = { selected.value = !selected.value }) {
 
     }
+}
+
+@Composable
+fun Heart() {
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.heart))
+    LottieAnimation(composition)
 }
 
 @Preview(showBackground = true)
