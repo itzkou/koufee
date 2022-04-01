@@ -39,7 +39,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ItemCoffe(name: String) {
     val imCoffe: Painter = painterResource(R.drawable.ic_coffee)
-    val imStar = painterResource(id = R.drawable.ic_star)
+
 
     Column(
         modifier = Modifier.padding(16.dp)
@@ -50,19 +50,9 @@ fun ItemCoffe(name: String) {
             modifier = Modifier
                 .height(412.dp)
                 .width(344.dp)
+                .align(Alignment.CenterHorizontally)
         )
-
-        Text(text = "Cappuccino")
-        Row(verticalAlignment = Alignment.CenterVertically) {
-
-            Text(text = "Drizzled with Caramel")
-            Image(painter = imStar, contentDescription = "im_star" )
-            Text(text = "4.5")
-
-        }
-        Text(text = "A single espresso shot poured into hot foamy milk, with the surface topped with mildly sweetened cocoa powder and drizzled with scrumptious caramel syrup ...")
-
-        Text(text = "Choice of Milk")
+        TextArea()
 
         ButtonColor()
 
@@ -73,12 +63,29 @@ fun ItemCoffe(name: String) {
 }
 
 @Composable
+fun TextArea() {
+    val imStar = painterResource(id = R.drawable.ic_star)
+    Text(text = "Cappuccino")
+    Row(verticalAlignment = Alignment.CenterVertically) {
+
+        Text(text = "Drizzled with Caramel")
+        Image(painter = imStar, contentDescription = "im_star")
+        Text(text = "4.5")
+
+    }
+    Text(text = "A single espresso shot poured into hot foamy milk, with the surface topped with mildly sweetened cocoa powder and drizzled with scrumptious caramel syrup ...")
+
+    Text(text = "Choice of Milk")
+}
+
+@Composable
 fun ButtonColor() {
 
     val selected = remember { mutableStateOf(false) }
 
     Button(colors = ButtonDefaults.buttonColors(
-        backgroundColor = if (selected.value) Grege else Brownie),
+        backgroundColor = if (selected.value) Grege else Brownie
+    ),
         onClick = { selected.value = !selected.value }) {
 
     }
