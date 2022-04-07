@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">koufee</string>
+    <string name="coffee_description">A single espresso shot poured into hot foamy milk, with the surface topped with mildly sweetened cocoa powder and drizzled with scrumptious caramel syrup ...</string>
+    <string name="coffee_headline">Drizzled with Caramel</string>
+    <string name="coffee_name">Cappuccino</string>
+    <string name="milk_choice">Choice of Milk</string>
+    <string name="oat_milk">Oat Milk</string>
+    <string name="soy_milk">Soy Milk</string>
+    <string name="almond_milk">Almond Milk</string>
 </resources>

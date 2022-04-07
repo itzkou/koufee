@@ -5,29 +5,34 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
     primary = Brownie,
     primaryVariant = Brown,
-    secondary = Grege
+    secondary = Grege,
+    background = Brownie
+    /* ,
+    surface = Color.White,
+    onPrimary = Color.White,
+    onSecondary = Color.Black,
+    onBackground = Color.Black,
+    onSurface = Color.Black,*/
 
- )
+)
 
 private val LightColorPalette = lightColors(
     primary = Brownie,
     primaryVariant = Brown,
-    secondary = Grege
-
-
-    /* Other default colors to override
-    background = Color.White,
+    secondary = Grege,
+    background = Brownie/*,
     surface = Color.White,
     onPrimary = Color.White,
     onSecondary = Color.Black,
     onBackground = Color.Black,
     onSurface = Color.Black,
-    */
-)
+*/
+    )
 
 @Composable
 fun KoufeeTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
