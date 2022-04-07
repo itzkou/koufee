@@ -9,7 +9,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -20,7 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Unspecified
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -79,7 +77,13 @@ fun TextArea() {
     val imStar = painterResource(id = R.drawable.ic_star)
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.heart))
     // Chip state
-    val textChipRememberOneState = remember {
+    val chipOneState = remember {
+        mutableStateOf(false)
+    }
+    val chipTwoState = remember {
+        mutableStateOf(false)
+    }
+    val chipThreeState = remember {
         mutableStateOf(false)
     }
     val milkChoice = listOf(
@@ -117,19 +121,21 @@ fun TextArea() {
         )
 
     }
-    Text(
-        text = stringResource(R.string.coffee_description),
-        fontFamily = openSansFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
-    )
 
-    Text(
-        text = stringResource(R.string.milk_choice),
-        fontFamily = rosarivoFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
-    )
+    Column(verticalArrangement = Arrangement.spacedBy(30.dp)) {
+        Text(
+            text = stringResource(R.string.coffee_description),
+            fontFamily = openSansFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 14.sp
+        )
+        Text(
+            text = stringResource(R.string.milk_choice),
+            fontFamily = rosarivoFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 14.sp
+        )
+    }
 
     LazyRow(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
     /*    items(milkChoice) {
@@ -145,19 +151,27 @@ fun TextArea() {
 
         items(1){
             TextChip(
-                isSelected = textChipRememberOneState.value,
+                isSelected = chipOneState.value,
                 text = milkChoice[0],
                 selectedColor = Grege,
                 onChecked = { state ->
-                    textChipRememberOneState.value = state
+                    chipOneState.value = state
                 }
             )
             TextChip(
-                isSelected = textChipRememberOneState.value,
+                isSelected = chipOneState.value,
                 text = milkChoice[1],
                 selectedColor = Grege,
                 onChecked = { state ->
-                    textChipRememberOneState.value = state
+                    chipTwoState.value = state
+                }
+            )
+            TextChip(
+                isSelected = chipOneState.value,
+                text = milkChoice[2],
+                selectedColor = Grege,
+                onChecked = { state ->
+                    chipThreeState.value = state
                 }
             )
         }
@@ -178,6 +192,7 @@ fun TextChip(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
+
             .padding(
                 vertical = 2.dp,
                 horizontal = 4.dp
@@ -203,6 +218,7 @@ fun TextChip(
             fontFamily = rosarivoFamily,
             fontWeight = FontWeight.Normal,
             fontSize = 14.sp
+
 
         )
     }
